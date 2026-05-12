@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<title>اكسبني VIP 👑 | شات مباشر</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+    --primary: #6366f1;
+    --secondary: #8b5cf6;
+    --gold: #fbbf24;
+    --dark: #050816;
+    --card: #0f172a;
+    --text: #e2e8f0;
+    --chat-bg: #0a0f1c;
+    --chat-msg-user: #1e293b;
+    --chat-msg-other: #312e81;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Cairo', sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at top right, #312e81 0%, #050816 50%);
+    color: var(--text);
+    overflow-x: hidden;
+}
+
+/* ===== AUTH ===== */
+#auth-page {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.auth-card {
+    width: 400px;
+    padding: 40px;
+    border-radius: 30px;
+    background: rgba(255,255,255,.05);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255,255,255,.08);
+    box-shadow: 0 20px 60px rgba(0,0,0,.5);
+}
+
+.auth-title {
+    text-align: center;
+    font-size: 2.5rem;
+    font-weight: 900;
+    margin-bottom: 25px;
+    background: linear-gradient(90deg,#818cf8,#c084fc);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.input-box {
+    width: 100%;
+    padding: 15px;
+    margin-bottom: 15px;
+    border: none;
+    outline: none;
+    border-radius: 16px;
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.06);
+    color: white;
+}
+
+.btn {
+    width: 100%;
+    padding: 15px;
+    border: none;
+    border-radius: 16px;
+    cursor: pointer;
+    font-weight: 900;
+    font-size: 1rem;
+    transition: .3s;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg,#6366f1,#8b5cf6);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+}
+
+.auth-switch {
+    text-align: center;
+    margin-top: 20px;
+    color: #a5b4fc;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* ===== DASHBOARD ===== */
+#dashboard {
+    display: none;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+nav {
+    height: 75px;
+    background: rgba(15,23,42,.95);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 30px;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+}
+
+.logo {
+    font-size: 1.7rem;
+    font-weight: 900;
+}
+
+.nav-user {
+    background: rgba(255,255,255,.05);
+    padding: 10px 20px;
+    border-radius: 15px;
+    font-weight: bold;
+}
+
+.layout {
+    display: flex;
+    flex: 1;
+}
+
+/* ===== SIDEBAR ===== */
+aside {
+    width: 260px;
+    background: #0b1220;
+    padding: 20px;
+    border-left: 1px solid rgba(255,255,255,.05);
+}
+
+.menu-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px;
+    margin-bottom: 10px;
+    border-radius: 16px;
+    cursor: pointer;
+    transition: .3s;
+    font-weight: bold;
+    color: #94a3b8;
+}
+
+.menu-item:hover, .menu-item.active {
+    background: linear-gradient(135deg,#6366f1,#8b5cf6);
+    color: white;
+}
+
+/* ===== MAIN ===== */
+main {
+    flex: 1;
+    padding: 30px;
+}
+
+.card {
+    background: rgba(255,255,255,.04);
+    border: 1px solid rgba(255,255,255,.05);
+    border-radius: 25px;
+    padding: 25px;
+    margin-bottom: 25px;
+}
+
+.hero {
+    background: linear-gradient(135deg,#6366f1,#8b5cf6);
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 4rem;
+    font-weight: 900;
+}
+
+.vip-box {
+    display: none;
+    background: linear-gradient(135deg,#f59e0b,#fbbf24);
+    color: black;
+    font-weight: 900;
+    text-align: center;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.games {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
+    gap: 20px;
+}
+
+.game-card {
+    text-align: center;
+    transition: .3s;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+}
+
+.game-btn {
+    margin-top: 15px;
+    border: none;
+    background: #6366f1;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* ===== ADMIN TABLE ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 15px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+}
+
+.admin-input {
+    width: 80px;
+    padding: 8px;
+    border-radius: 10px;
+    background: #1e293b;
+    color: white;
+    border: none;
+}
+
+.admin-btn {
+    padding: 8px 14px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    border: none;
+}
+
+.give-btn { background: #10b981; color: white; }
+.delete-btn { background: #ef4444; color: white; }
+
+/* ===== LEADERBOARD ===== */
+.leader-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid rgba(255,255,255,.05);
+}
+
+/* ===== CHAT SECTION (NEW) ===== */
+.chat-container {
+    background: var(--chat-bg);
+    border-radius: 25px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 550px;
+}
+
+.chat-header {
+    background: rgba(99,102,241,0.2);
+    padding: 15px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    font-weight: bold;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.chat-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.chat-bubble {
+    max-width: 80%;
+    padding: 10px 16px;
+    border-radius: 22px;
+    word-break: break-word;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    position: relative;
+}
+
+.chat-bubble.my-message {
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    align-self: flex-end;
+    border-bottom-right-radius: 6px;
+    color: white;
+}
+
+.chat-bubble.other-message {
+    background: var(--chat-msg-user);
+    align-self: flex-start;
+    border-bottom-left-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.05);
+}
+
+.chat-name {
+    font-size: 0.7rem;
+    font-weight: bold;
+    opacity: 0.8;
+    margin-bottom: 4px;
+    display: flex;
+    gap: 6px;
+    align-items: center;
+}
+
+.vip-badge {
+    background: gold;
+    color: black;
+    font-size: 0.6rem;
+    padding: 0px 6px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+.chat-input-area {
+    display: flex;
+    gap: 12px;
+    padding: 15px 20px;
+    background: rgba(0,0,0,0.3);
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.chat-input {
+    flex: 1;
+    background: #1e293b;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 30px;
+    color: white;
+    outline: none;
+}
+
+.chat-send-btn {
+    background: var(--primary);
+    border: none;
+    width: 48px;
+    border-radius: 30px;
+    cursor: pointer;
+    color: white;
+    font-size: 1.2rem;
+}
+
+.empty-chat {
+    text-align: center;
+    padding: 30px;
+    opacity: 0.6;
+}
+
+.section {
+    display: none;
+    animation: fade .5s ease;
+}
+
+.section.active {
+    display: block;
+}
+
+@keyframes fade {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@media(max-width: 900px) {
+    .layout { flex-direction: column; }
+    aside { width: 100%; display: flex; overflow-x: auto; gap: 8px; }
+    .menu-item { min-width: 140px; }
+    .chat-bubble { max-width: 90%; }
+}
+</style>
+</head>
+<body>
+
+<!-- AUTH -->
+<div id="auth-page">
+    <div class="auth-card" id="login-box">
+        <div class="auth-title">اكسبني 👑</div>
+        <input type="text" id="login-user" class="input-box" placeholder="اسم المستخدم">
+        <input type="password" id="login-pass" class="input-box" placeholder="كلمة المرور">
+        <button class="btn btn-primary" onclick="login()">دخول</button>
+        <div class="auth-switch" onclick="toggleAuth()">إنشاء حساب جديد</div>
+    </div>
+    <div class="auth-card" id="register-box" style="display:none;">
+        <div class="auth-title">عضوية جديدة ✨</div>
+        <input type="text" id="reg-user" class="input-box" placeholder="اسم المستخدم">
+        <input type="password" id="reg-pass" class="input-box" placeholder="كلمة المرور (8 أحرف)">
+        <button class="btn btn-primary" onclick="registerUser()">تسجيل</button>
+        <div class="auth-switch" onclick="toggleAuth()">العودة للدخول</div>
+    </div>
+</div>
+
+<!-- DASHBOARD -->
+<div id="dashboard">
+    <nav>
+        <div class="logo"><i class="fa-solid fa-gem"></i> اكسبني</div>
+        <div class="nav-user" id="nav-user">...</div>
+    </nav>
+    <div class="layout">
+        <aside>
+            <div class="menu-item active" onclick="openTab('home',this)"><i class="fa-solid fa-house"></i> الرئيسية</div>
+            <div class="menu-item" onclick="openTab('games',this)"><i class="fa-solid fa-gamepad"></i> الألعاب</div>
+            <div class="menu-item" onclick="openTab('vip',this)"><i class="fa-solid fa-crown"></i> VIP</div>
+            <div class="menu-item" id="chat-menu" onclick="openTab('chat',this)"><i class="fa-solid fa-comments"></i> الدردشة 💬</div>
+            <div class="menu-item" id="admin-btn" style="display:none;" onclick="openTab('admin',this)"><i class="fa-solid fa-user-shield"></i> لوحة الأدمن</div>
+            <div class="menu-item" onclick="logout()"><i class="fa-solid fa-right-from-bracket"></i> خروج</div>
+        </aside>
+        <main>
+            <div class="card vip-box" id="vip-box">👑 اشتراك VIP مفعل | <span id="vip-time"></span></div>
+
+            <!-- HOME -->
+            <div class="section active" id="home">
+                <div class="card hero"><p>رصيدك الحالي</p><h1 id="points">0</h1></div>
+                <div class="info-grid">
+                    <div class="card" style="text-align:center;"><h3>👤 العضوية</h3><h2 id="member-name" style="margin-top:10px;color:#818cf8;">...</h2></div>
+                    <div class="card" style="text-align:center;"><h3>💎 نوع الاشتراك</h3><h2 id="member-rank" style="margin-top:10px;color:#fbbf24;">عادي</h2></div>
+                    <div class="card" style="text-align:center;"><h3>⏳ الوقت المتبقي</h3><h2 id="member-time" style="margin-top:10px;color:#10b981;">غير مفعل</h2></div>
+                </div>
+                <div class="card" style="text-align:center;"><h2>🎁 الجائزة اليومية</h2><p style="margin:15px 0;">200 نقطة كل 24 ساعة</p><button class="btn btn-primary" id="daily-btn" onclick="dailyReward()">استلام الجائزة</button></div>
+                <div class="card"><h2 style="margin-bottom:20px;">🏆 الصدارة</h2><div id="leaderboard"></div></div>
+            </div>
+
+            <!-- GAMES (بقية الألعاب) -->
+            <div class="section" id="games">
+                <div class="games">
+                    <div class="card game-card"><h2>🧠 لعبة الذاكرة</h2><p>احفظ الرقم ثم اكتبه</p><select class="input-box" id="memory-level"><option value="easy">سهل</option><option value="medium">متوسط</option><option value="hard">صعب</option></select><button class="game-btn" onclick="memoryGame()">ابدأ -100💎</button></div>
+                    <div class="card game-card"><h2>⚡ لعبة السرعة</h2><p>اضغط بسرعة</p><select class="input-box" id="speed-level"><option value="easy">سهل</option><option value="medium">متوسط</option><option value="hard">صعب</option></select><button class="game-btn" onclick="speedGame()">ابدأ -100💎</button></div>
+                    <div class="card game-card"><h2>➕ الرياضيات</h2><p>حل العملية</p><select class="input-box" id="math-level"><option value="easy">سهل</option><option value="medium">متوسط</option><option value="hard">صعب</option></select><button class="game-btn" onclick="mathGame()">ابدأ -100💎</button></div>
+                    <div class="card game-card"><h2>🎯 رد الفعل</h2><p>اضغط عند ظهور GO</p><select class="input-box" id="react-level"><option value="easy">سهل</option><option value="medium">متوسط</option><option value="hard">صعب</option></select><button class="game-btn" onclick="reactionGame()">ابدأ -100💎</button></div>
+                    <div class="card game-card"><h2>🎁 صندوق الحظ</h2><p>ربح أو خسارة</p><select class="input-box" id="luck-level"><option value="easy">سهل</option><option value="medium">متوسط</option><option value="hard">صعب</option></select><button class="game-btn" onclick="luckGame()">ابدأ -100💎</button></div>
+                    <div class="card game-card"><h2>👑 لعبة VIP</h2><p>للأعضاء VIP فقط</p><select class="input-box" id="vip-level"><option value="easy">سهل</option><option value="medium">متوسط</option><option value="hard">صعب</option></select><button class="game-btn" onclick="vipGame()">ابدأ -100💎</button></div>
+                </div>
+            </div>
+
+            <!-- VIP SHOP -->
+            <div class="section" id="vip">
+                <div class="games">
+                    <div class="card game-card"><h2>VIP شهر 👑</h2><h1 style="margin:20px 0;color:#818cf8;">15,000</h1><button class="btn btn-primary" onclick="buyVip(30,15000)">شراء</button></div>
+                    <div class="card game-card" style="border:2px solid gold;"><h2 style="color:gold;">VIP سنة 🔥</h2><h1 style="margin:20px 0;color:gold;">120,000</h1><button class="btn" style="background:linear-gradient(135deg,#f59e0b,#fbbf24);color:black;" onclick="buyVip(365,120000)">شراء</button></div>
+                </div>
+            </div>
+
+            <!-- CHAT SECTION (جديدة) -->
+            <div class="section" id="chat">
+                <div class="card" style="padding:0; overflow:hidden;">
+                    <div class="chat-container">
+                        <div class="chat-header">
+                            <i class="fa-solid fa-users"></i> غرفة الدردشة العامة
+                            <span style="font-size:12px; background:#2d3748; padding:4px 12px; border-radius:40px;">تكلم مع الأعضاء</span>
+                        </div>
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="empty-chat">✨ أهلا بك في الدردشة! اكتب رسالتك الأولى ✨</div>
+                        </div>
+                        <div class="chat-input-area">
+                            <input type="text" id="chatInput" class="chat-input" placeholder="اكتب رسالتك هنا..." maxlength="200">
+                            <button class="chat-send-btn" onclick="sendChatMessage()"><i class="fa-regular fa-paper-plane"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ADMIN PANEL -->
+            <div class="section" id="admin">
+                <div class="card"><h2 style="margin-bottom:20px;">👑 لوحة الأدمن</h2><div style="overflow:auto;"><table><thead><tr><th>المستخدم</th><th>الباسورد</th><th>النقاط</th><th>إضافة نقاط</th><th>حذف</th></tr></thead><tbody id="admin-table"></tbody></table></div></div>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script>
+/* ----- INIT GLOBAL STORAGE (ADMIN & CHAT HISTORY) ----- */
+if(!localStorage.getItem('admin')){
+    localStorage.setItem('admin', JSON.stringify({ pass:'admin12345', points:999999, vip:9999999999999, daily:0 }));
+}
+if(!localStorage.getItem('chat_messages')){
+    localStorage.setItem('chat_messages', JSON.stringify([]));
+}
+let currentUser = null;
+let chatUpdateInterval = null;
+
+/* ----- HELPER: update global chat UI ----- */
+function renderChat() {
+    let messages = JSON.parse(localStorage.getItem('chat_messages') || '[]');
+    const container = document.getElementById('chatMessages');
+    if(!container) return;
+    if(messages.length === 0){
+        container.innerHTML = '<div class="empty-chat">💬 لا توجد رسائل بعد. كن أول من يكتب!</div>';
+        return;
+    }
+    container.innerHTML = '';
+    messages.forEach(msg => {
+        const isMine = (msg.sender === currentUser);
+        const bubbleDiv = document.createElement('div');
+        bubbleDiv.className = `chat-bubble ${isMine ? 'my-message' : 'other-message'}`;
+        // display name + vip badge
+        let vipTag = '';
+        if(msg.isVIP) vipTag = '<span class="vip-badge">VIP</span>';
+        const nameHtml = `<div class="chat-name"><i class="fa-regular fa-user"></i> ${escapeHtml(msg.sender)} ${vipTag} <span style="font-size:10px; opacity:0.6;">${msg.time}</span></div>`;
+        bubbleDiv.innerHTML = nameHtml + `<div>${escapeHtml(msg.text)}</div>`;
+        container.appendChild(bubbleDiv);
+    });
+    container.scrollTop = container.scrollHeight;
+}
+
+function escapeHtml(str) {
+    if(!str) return '';
+    return str.replace(/[&<>]/g, function(m) {
+        if(m === '&') return '&amp;';
+        if(m === '<') return '&lt;';
+        if(m === '>') return '&gt;';
+        return m;
+    }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+        return c;
+    });
+}
+
+/* send message */
+function sendChatMessage() {
+    if(!currentUser) return;
+    const input = document.getElementById('chatInput');
+    const text = input.value.trim();
+    if(text === "") return;
+    let userData = JSON.parse(localStorage.getItem(currentUser));
+    let isVIP = (userData && userData.vip > Date.now()) ? true : false;
+    let messages = JSON.parse(localStorage.getItem('chat_messages') || '[]');
+    const now = new Date();
+    const timeStr = `${now.getHours().toString().padStart(2,'0')}:${now.getMinutes().toString().padStart(2,'0')}`;
+    messages.push({
+        sender: currentUser,
+        text: text,
+        isVIP: isVIP,
+        time: timeStr,
+        timestamp: Date.now()
+    });
+    // keep last 200 messages
+    if(messages.length > 200) messages = messages.slice(-200);
+    localStorage.setItem('chat_messages', JSON.stringify(messages));
+    input.value = '';
+    renderChat();
+    // also force UI update in case of other tabs (but simple)
+}
+
+// auto refresh chat every 2 seconds (new messages from other users)
+function startChatListener() {
+    if(chatUpdateInterval) clearInterval(chatUpdateInterval);
+    chatUpdateInterval = setInterval(() => {
+        if(currentUser && document.getElementById('chat') && document.getElementById('chat').classList.contains('active')) {
+            renderChat();
+        } else if(currentUser) {
+            // if chat section not active, still update storage but not needed visually, but we can keep
+            renderChat(); // anyway
+        }
+    }, 2000);
+}
+
+/* ----- AUTH & REGISTER (محسن) ----- */
+function toggleAuth(){
+    let loginBox = document.getElementById('login-box');
+    let regBox = document.getElementById('register-box');
+    if(loginBox.style.display === 'none'){
+        loginBox.style.display = 'block';
+        regBox.style.display = 'none';
+    } else {
+        loginBox.style.display = 'none';
+        regBox.style.display = 'block';
+    }
+}
+
+function registerUser(){
+    const u = document.getElementById('reg-user').value.trim();
+    const p = document.getElementById('reg-pass').value.trim();
+    if(!u || !p) return alert('املأ الحقول');
+    if(p.length < 8) return alert('كلمة المرور يجب أن تكون 8 أحرف أو أكثر');
+    if(localStorage.getItem(u)) return alert('الاسم مستخدم');
+    localStorage.setItem(u, JSON.stringify({ pass:p, points:500, vip:0, daily:0 }));
+    alert('🎁 حصلت على 500 نقطة');
+    toggleAuth();
+}
+
+function login(){
+    const u = document.getElementById('login-user').value.trim();
+    const p = document.getElementById('login-pass').value.trim();
+    const raw = localStorage.getItem(u);
+    if(!raw) return alert('الحساب غير موجود');
+    const data = JSON.parse(raw);
+    if(data.pass !== p) return alert('كلمة المرور خاطئة');
+    currentUser = u;
+    document.getElementById('auth-page').style.display='none';
+    document.getElementById('dashboard').style.display='flex';
+    if(chatUpdateInterval) clearInterval(chatUpdateInterval);
+    startChatListener();
+    updateUI();
+    renderChat(); // load chat messages at start
+}
+
+/* ----- UI & LEADERBOARD & ADMIN RENDER ----- */
+function updateUI(){
+    if(!currentUser) return;
+    const d = JSON.parse(localStorage.getItem(currentUser));
+    document.getElementById('nav-user').innerHTML = `👤 ${currentUser} | 💎 ${d.points.toLocaleString()}`;
+    document.getElementById('points').innerText = d.points.toLocaleString();
+    document.getElementById('member-name').innerText = currentUser;
+    updateLeaderboard();
+    const isVipActive = (d.vip > Date.now());
+    if(isVipActive){
+        document.getElementById('member-rank').innerText = 'VIP 👑';
+        document.getElementById('vip-box').style.display='block';
+        const diff = d.vip - Date.now();
+        const days = Math.floor(diff / 86400000);
+        document.getElementById('member-time').innerText = `${days} يوم`;
+        document.getElementById('vip-time').innerText = `${days} يوم متبقي`;
+    } else {
+        document.getElementById('member-rank').innerText = 'عضو عادي';
+        document.getElementById('member-time').innerText = 'غير مفعل';
+        document.getElementById('vip-box').style.display='none';
+    }
+    if(currentUser === 'admin'){
+        document.getElementById('admin-btn').style.display='flex';
+        renderAdmin();
+    } else {
+        document.getElementById('admin-btn').style.display='none';
+    }
+}
+
+function updateLeaderboard(){
+    let users = [];
+    for(let i=0;i<localStorage.length;i++){
+        const k = localStorage.key(i);
+        try{
+            const data = JSON.parse(localStorage.getItem(k));
+            if(data && typeof data.points === 'number') users.push({ name:k, points:data.points });
+        }catch(e){}
+    }
+    users.sort((a,b)=>b.points - a.points);
+    const board = document.getElementById('leaderboard');
+    board.innerHTML = '';
+    users.slice(0,5).forEach((u,i)=>{
+        board.innerHTML += `<div class="leader-item"><span>${i+1}. ${u.name}</span><b>${u.points.toLocaleString()}</b></div>`;
+    });
+}
+
+function renderAdmin(){
+    const tbody = document.getElementById('admin-table');
+    if(!tbody) return;
+    tbody.innerHTML = '';
+    for(let i=0;i<localStorage.length;i++){
+        const key = localStorage.key(i);
+        try{
+            const data = JSON.parse(localStorage.getItem(key));
+            tbody.innerHTML += `<tr>
+                <td>${key}</td><td style="color:#fbbf24;">${data.pass}</td>
+                <td>${data.points.toLocaleString()}</td>
+                <td><input type="number" class="admin-input" id="points-${key}"><button class="admin-btn give-btn" onclick="givePoints('${key}')">إعطاء</button></td>
+                <td>${key !== 'admin' ? `<button class="admin-btn delete-btn" onclick="deleteUser('${key}')">حذف</button>` : 'محمي'}</td>
+            </tr>`;
+        }catch(e){}
+    }
+}
+
+function givePoints(user){
+    const val = parseInt(document.getElementById(`points-${user}`).value);
+    if(isNaN(val)) return;
+    let d = JSON.parse(localStorage.getItem(user));
+    if(d){
+        d.points += val;
+        localStorage.setItem(user, JSON.stringify(d));
+        alert('تمت الإضافة');
+        renderAdmin();
+        updateUI();
+        renderChat(); // just in case
+    }
+}
+
+function deleteUser(user){
+    if(!confirm(`حذف حساب ${user}؟`)) return;
+    localStorage.removeItem(user);
+    if(currentUser === user) logout();
+    else { renderAdmin(); updateLeaderboard(); renderChat(); }
+}
+
+/* ----- REWARDS / GAMES (مع الحفاظ على جميع الوظائف القديمة) ----- */
+function dailyReward(){
+    let d = JSON.parse(localStorage.getItem(currentUser));
+    if((Date.now() - d.daily) < 86400000) return alert('⏳ الجائزة كل 24 ساعة');
+    d.points += 200;
+    d.daily = Date.now();
+    localStorage.setItem(currentUser, JSON.stringify(d));
+    alert('🎁 حصلت على 200 نقطة');
+    updateUI();
+}
+
+function payToPlay(){
+    let d = JSON.parse(localStorage.getItem(currentUser));
+    if(d.points < 100){ alert('❌ تحتاج 100 نقطة'); return false; }
+    d.points -= 100;
+    localStorage.setItem(currentUser, JSON.stringify(d));
+    updateUI();
+    return true;
+}
+
+function getReward(level){
+    if(level === 'easy') return Math.floor(Math.random()*1500)+500;
+    if(level === 'medium') return Math.floor(Math.random()*4000)+2000;
+    if(level === 'hard') return Math.floor(Math.random()*9000)+5000;
+    return 500;
+}
+
+function memoryGame(){
+    if(!payToPlay()) return;
+    let d = JSON.parse(localStorage.getItem(currentUser));
+    const level = document.getElementById('memory-level').value;
+    const reward = getReward(level);
+    const number = Math.floor(Math.random()*9999);
+    alert(`🧠 احفظ الرقم:\n${number}`);
+    setTimeout(()=>{
+        const ans = prompt('✍️ اكتب الرقم');
+        if(ans == number){ d.points += reward; alert(`🔥 ربحت ${reward}`); }
+        else alert('❌ خطأ');
+        localStorage.setItem(currentUser, JSON.stringify(d));
+        updateUI();
+    },3000);
+}
+function speedGame(){
+    if(!payToPlay()) return;
+    let d = JSON.parse(localStorage.getItem(currentUser));
+    const level = document.getElementById('speed-level').value;
+    const reward = getReward(level);
+    const start = Date.now();
+    prompt('⚡ اضغط OK بسرعة');
+    const speed = (Date.now()-start)/1000;
+    if(speed < 2){ d.points += reward; alert(`🚀 سريع! ربحت ${reward}`); }
+    else alert(`🐢 بطيء (${speed.toFixed(2)} ثانية)`);
+    localStorage.setItem(currentUser, JSON.stringify(d));
+    updateUI();
+}
+function mathGame(){
+    if(!payToPlay()) return;
+    let d = JSON.parse(localStorage.getItem(currentUser));
+    const level = document.getElementById('math-level').value;
+    const reward = getReward(level);
+    let a = Math.floor(Math.random()*20), b = Math.floor(Math.random()*20);
+    if(level === 'hard'){ a*=5; b*=5; }
+    const ans = prompt(`➕ كم يساوي:\n${a} + ${b}`);
+    if(Number(ans) === a+b){ d.points += reward; alert(`🔥 صحيح! ربحت ${reward}`); }
+    else alert(`❌ الجواب ${a+b}`);
+    localStorage.setItem(currentUser, JSON.stringify(d));
+    updateUI();
+}
+function reactionGame(){
+    if(!payToPlay()) return;
+    let d = JSON.parse(localStorage.getItem(currentUser));
+    const level = document.getElementById('react-level').value;
+    const reward = getReward(level);
+    alert('⏳ انتظر كلمة GO');
+    const wait = Math.floor(Math.random()*5000)+1000;
+    setTimeout(()=>{
+        const start = Date.now();
+        prompt('🎯 GO');
+        const result = (Date.now()-start)/1000;
+        if(result < 1.5){ d.points += reward; alert(`⚡ ممتاز! ربحت ${reward}`); }
+        else alert(`😢 بطيء (${result.toFixed(2)} ثانية)`);
+        localStorage.setItem(currentUser, JSON.stringify(d));
+        updateUI();
+    }, wait);
+}
+function luckGame(){
+    if(!payToPlay()) return;
+    let d = JSON.parse(localStorage.getItem(currentUser));
+    const level = document.getElementById('luck-level').value;
+    const reward = getReward(level);
+    if(Math.random() > 0.5){ d.points += reward; alert(`🎁 ربحت ${reward}`); }
+    else alert('💔 خسرت');
+    localStorage.setItem(currentUser, JSON.stringify(d));
+    updateUI();
+}
+function vipGame(){
+    let d = JSON.parse(localStorage.getItem(currentUser));
+    if(d.vip < Date.now()) return alert('👑 فقط VIP');
+    if(!payToPlay()) return;
+    const level = document.getElementById('vip-level').value;
+    const reward = getReward(level)*2;
+    const code = Math.floor(Math.random()*9000)+1000;
+    const ans = prompt(`👑 اكتب الكود:\n${code}`);
+    if(ans == code){ d.points += reward; alert(`🔥 ربحت ${reward}`); }
+    else alert('❌ فشل');
+    localStorage.setItem(currentUser, JSON.stringify(d));
+    updateUI();
+}
+function buyVip(days,cost){
+    let d = JSON.parse(localStorage.getItem(currentUser));
+    if(d.points < cost) return alert('النقاط غير كافية');
+    d.points -= cost;
+    const extra = days * 86400000;
+    d.vip = (d.vip > Date.now() ? d.vip : Date.now()) + extra;
+    localStorage.setItem(currentUser, JSON.stringify(d));
+    alert('👑 تم تفعيل VIP');
+    updateUI();
+    renderChat(); // refresh chat badge display
+}
+
+/* ----- TABS ----- */
+function openTab(id, el){
+    document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.querySelectorAll('.menu-item').forEach(m=>m.classList.remove('active'));
+    el.classList.add('active');
+    if(id === 'chat') renderChat();
+    if(id === 'admin' && currentUser === 'admin') renderAdmin();
+}
+
+function logout(){ location.reload(); }
+</script>
+</body>
+</html>
